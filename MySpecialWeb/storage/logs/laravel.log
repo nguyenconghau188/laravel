@@ -219,3 +219,6 @@ Stack trace:
 #33 C:\xampp\htdocs\laravel\trunk\MySpecialWeb\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #34 C:\xampp\htdocs\laravel\trunk\MySpecialWeb\artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #35 {main}  
+[2018-08-15 10:10:41] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '->' (T_OBJECT_OPERATOR)' in C:\xampp\htdocs\laravel\trunk\MySpecialWeb\app\Http\Controllers\TheLoaiController.php:39
+Stack trace:
+#0 {main}  

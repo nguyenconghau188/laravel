@@ -16,13 +16,13 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thể loại<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List Category</a>
+                                    <a href="admin/theloai/danhsach">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add Category</a>
+                                    <a href="admin/theloai/them">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -27,8 +27,8 @@
                         @endif
 
                         <form action="admin/theloai/them" method="POST">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <label>Tên</label>
                                 <input class="form-control" name="Ten" placeholder="Vui lòng nhập tên thể loại" />
                                 {{-- <select class="form-control">

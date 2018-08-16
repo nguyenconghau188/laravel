@@ -24,7 +24,7 @@ class TheLoaiController extends Controller
     {
     	$this->validate($request, 
     		[
-    			'Ten' => 'required|unique:TheLoai|min:3|max:100'
+    			'Ten' => 'required|unique:TheLoai,Ten|min:3|max:100'
     		], 
     		[
     			'Ten.required'=>'Bạn chưa nhập tên thể loại', 

@@ -12,7 +12,28 @@
                     </div>
                     <!-- /.col-lg-12 -->
                     <div class="col-lg-7" style="padding-bottom:120px">
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="_token" value="{{csrf_token ()}}">
+                            @if(count($errors)>0)
+                                <div class="alert alert-danger">
+                                    @foreach($errors->all() as $error)
+                                        {{$error}} <br>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            @if(session('thongbao'))
+                                <div class="alert alert-success">
+                                    {{session('thongbao')}}
+                                </div>
+                            @endif
+
+                            @if(session('loi'))
+                                <div class="alert alert-danger">
+                                    {{session('loi')}}
+                                </div>
+                            @endif
+
                             <div class="form-group">
                                 <label>Thể loại</label>
                                 <select class="form-control" name="TheLoai" id="TheLoai">
@@ -37,20 +58,26 @@
                             </div>
                             <div class="form-group">
                                 <label>Tóm tắt</label>
-                                <input class="form-control" name="TomTat" placeholder="Vui lòng nhập tóm tắt" />
+                                <textarea class="form-control ckeditor" name="TomTat" id="TomTat" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Nội dung</label>
+                                <textarea class="form-control ckeditor" name="NoiDung" id="NoiDung" rows="5"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Hình Ảnh</label>
-                                <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+                                <input type="file" class="form-control" name="HinhAnh" />
                             </div>
                             <div class="form-group">
                                 <label>Nổi bật</label>
-                                <select class="form-control" name="NoiBat">
-                                    <option value="0">Không</option>
-                                    <option value="1">Có</option>
-                                </select>
+                                <label class="radio-inline">
+                                    <input name="NoiBat" value="0" checked="" type="radio">Không
+                                </label>
+                                <label class="radio-inline">
+                                    <input name="NoiBat" value="1" type="radio">Có
+                                </label>
                             </div>
-                            <button type="submit" class="btn btn-default">Category Add</button>
+                            <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         <form>
                     </div>

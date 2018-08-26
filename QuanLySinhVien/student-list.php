@@ -1,6 +1,8 @@
 <?php 
-require 'libs/students.php'
+require './libs/students.php';
+
 $students = get_all_students();
+
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +36,7 @@ $students = get_all_students();
 			<td>
 				<form action="student-delete.php" method="post" accept-charset="utf-8">
 					<input onclick="window.location = 'student-edit.php?id=<?php echo $student['sv_id']; ?>'" type="button" name="edit" value="Sửa">
+					<input type="hidden" name="sv_id" value="<?php echo $student['sv_id']?>">
 					<input onclick="return confirm('Bạn có chắc chắn muốn xóa không?');" type="submit" name="delete" value="Xóa">
 				</form>
 			</td>

@@ -27,7 +27,7 @@ class FT_Controller
         
     }
 
-    public function laod($controller, $action)
+    public function load($controller, $action)
     {
     	
     }

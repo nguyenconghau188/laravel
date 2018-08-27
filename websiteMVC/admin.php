@@ -20,6 +20,9 @@ $segment['action'] = empty($_GET['a']) ? ACTION_DEFAULT : $_GET['a'];
 require_once PATH_SYSTEM.'/core/FT_Controller.php';
 
 $controller = new FT_Controller();
-$controller->load();
+// echo 'controller: '.$segment['controller'];
+// echo 'action: '.$segment['action'];
+// $controller->load($segment['controller'], $segment['action']);
+$controller->load($segment['controller'], $segment['action']);
 
  ?>

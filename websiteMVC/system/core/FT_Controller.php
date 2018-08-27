@@ -1,9 +1,8 @@
 <?php 
 //controller chính
-if (!define('PATH_SYSTEM')) {
+if (!defined('PATH_SYSTEM')) {
 	die('Bad requested!');
 }
-
 /**
  * summary
  */
@@ -14,7 +13,7 @@ class FT_Controller
      */
     protected $view = NULL;
 
-    protected $model = NULL:
+    protected $model = NULL;
 
     protected $library = NULL;
 
@@ -31,13 +30,14 @@ class FT_Controller
     {
 		//chuyển đổi tên controller vì mặc định nó có định dạng là {Name}_Controller
 		$controller = ucfirst(strtolower($controller)).'_Controller';
+		echo 'controller->'.$controller;
 		//hàm ucfirst-> chuyển đổi kí tự đầu tiên trong chuỗi thành in hoa nếu đó là 1 chữ cái
 		$action = strtolower($action).'Action';
 
-		if (!file_exists(PATH_APPLICATION.'/controller'.$controller.'.php')) {
+		if (!file_exists(PATH_APPLICATION.'/controller/'.$controller.'.php')) {
 		    	die('Controller không tồn tại');
 		}
-		require_once PATH_APPLICATION.'/controller'.$controller.'.php';
+		require_once PATH_APPLICATION.'/controller/'.$controller.'.php';
 		if (!class_exists($controller)) {
 		    die('Controller không tồn tại');
 		}    	
@@ -46,8 +46,9 @@ class FT_Controller
 		if (!method_exists($controllerObject, $action)) {
 			die('Action không tồn tại');
 		}
+		echo 'action->'.$action;
 
-		$controllerObject->{$action};
+		$controllerObject->{$action}();
     }
 }
  ?>

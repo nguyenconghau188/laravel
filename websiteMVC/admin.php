@@ -9,20 +9,26 @@ define('PATH_APPLICATION', __DIR__ . '/admin');
 // Lấy thông số cấu hình
 require (PATH_SYSTEM . '/config/config.php');
 
-$segment = array(
-	'controller'=>'',
-	'action'=>array()
-);
+//mở file FT_Common.php, file này chứa hàm FT_Load() chạy hệ thống
+include_once PATH_SYSTEM . '/core/FT_Common.php';
+ 
+// Chương trình chính
+FT_load();
 
-$segment['controller'] = empty($_GET['c']) ? CONTROLLER_DEFAULT : $_GET['c'];
-$segment['action'] = empty($_GET['a']) ? ACTION_DEFAULT : $_GET['a'];
+// $segment = array(
+// 	'controller'=>'',
+// 	'action'=>array()
+// );
 
-require_once PATH_SYSTEM.'/core/FT_Controller.php';
+// $segment['controller'] = empty($_GET['c']) ? CONTROLLER_DEFAULT : $_GET['c'];
+// $segment['action'] = empty($_GET['a']) ? ACTION_DEFAULT : $_GET['a'];
 
-$controller = new FT_Controller();
-// echo 'controller: '.$segment['controller'];
-// echo 'action: '.$segment['action'];
+// require_once PATH_SYSTEM.'/core/FT_Controller.php';
+
+// $controller = new FT_Controller();
+// // echo 'controller: '.$segment['controller'];
+// // echo 'action: '.$segment['action'];
+// // $controller->load($segment['controller'], $segment['action']);
 // $controller->load($segment['controller'], $segment['action']);
-$controller->load($segment['controller'], $segment['action']);
 
  ?>

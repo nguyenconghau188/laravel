@@ -23,7 +23,9 @@ class FT_Controller
 
     public function __construct($is_controller=true)
     {
-        
+        require_once PATH_SYSTEM.'/core/loader/FT_Config_Loader.php';
+        $this->config = new FT_Config_Loader();
+        $this->config->load('config');
     }
 
   //   public function load($controller, $action)

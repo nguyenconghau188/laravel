@@ -26,6 +26,10 @@ class FT_Controller
         require_once PATH_SYSTEM.'/core/loader/FT_Config_Loader.php';
         $this->config = new FT_Config_Loader();
         $this->config->load('config');
+
+        //load library
+        require_once PATH_SYSTEM.'/core/loader/FT_Library_Loader.php';
+        $this->library = new FT_Library_Loader();
     }
 
   //   public function load($controller, $action)

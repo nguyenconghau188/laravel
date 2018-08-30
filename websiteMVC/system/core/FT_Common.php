@@ -10,10 +10,12 @@ function FT_load()
 	$controller = empty($_GET['c']) ? $config['default_controller'] : $_GET['c'];
 	$action = empty($_GET['a']) ? $config['default_action'] : $_GET['a'];
 
+
 	$controller = ucfirst(strtolower($controller)).'_Controller';
 	$action = strtolower($action).'Action';
 	if (!file_exists(PATH_APPLICATION.'/controller/'.$controller.'.php'))
 	{
+		echo 'controller->'.$config['default_controller'].'<br>';
 		die ('Controller không tồn tại');
 	}
 
@@ -26,7 +28,7 @@ function FT_load()
 
 	$controllerObject = new $controller();
 	if (!method_exists($controllerObject, $action)) {
-		die ('Không tìm thấy action');
+		die ('Không tìm thấy action->'.$action.' - controller->'.$controller);
 	}
 
 	$controllerObject->{$action}();

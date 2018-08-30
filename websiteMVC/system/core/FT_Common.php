@@ -23,6 +23,7 @@ function FT_load()
 	require_once PATH_APPLICATION.'/controller/'.$controller.'.php';
 
 	if (!class_exists($controller)) {
+		echo 'controller->'.$controller;
 		die ('Không tìm thấy controller');
 	}
 

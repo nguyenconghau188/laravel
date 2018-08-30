@@ -30,6 +30,10 @@ class FT_Controller
         //load library
         require_once PATH_SYSTEM.'/core/loader/FT_Library_Loader.php';
         $this->library = new FT_Library_Loader();
+
+        //load helper
+        require_once PATH_SYSTEM.'/core/loader/FT_Helper_Loader.php';
+        $this->helper = new FT_Helper_Loader();
     }
 
   //   public function load($controller, $action)

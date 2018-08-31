@@ -34,6 +34,9 @@ class FT_Controller
         //load helper
         require_once PATH_SYSTEM.'/core/loader/FT_Helper_Loader.php';
         $this->helper = new FT_Helper_Loader();
+
+        require_once PATH_SYSTEM.'/core/loader/FT_View_Loader.php';
+        $this->view = new FT_View_Loader();
     }
 
   //   public function load($controller, $action)

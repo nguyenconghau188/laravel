@@ -20,6 +20,12 @@ function FT_load()
 	}
 
 	include_once PATH_SYSTEM.'/core/FT_Controller.php';
+
+	//load basecontroller
+	if (file_exists(PATH_APPLICATION.'/core/Base_Controller.php')) {
+		include_once PATH_APPLICATION.'/core/Base_Controller.php';
+	}
+	
 	require_once PATH_APPLICATION.'/controller/'.$controller.'.php';
 
 	if (!class_exists($controller)) {

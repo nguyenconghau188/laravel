@@ -14,7 +14,6 @@ class FT_View_Loader
 
     public function load($view, $data = array())
     {
-    	echo 'load';
         //chuyển mảng dữ liệu thành từng biến
         extract($data);
 

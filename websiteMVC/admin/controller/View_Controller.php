@@ -13,7 +13,11 @@ class View_Controller extends FT_Controller
      */
     public function indexAction()
     {
-        $this->view->load('view');
+    	$data = array(
+    		'title'=>'Chào mừng các bạn nhé'
+    	);
+
+        $this->view->load('view', $data);
         $this->view->show();
     }
 }

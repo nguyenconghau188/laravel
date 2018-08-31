@@ -25,6 +25,7 @@
          
         <div id="content">
             CONTENT
+            <h2><?php echo $title; ?></h2>
         </div>
          
         <div id="footer">

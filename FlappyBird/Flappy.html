@@ -35,13 +35,16 @@
 			this.height = height;
 			this.x = x;
 			this.y = y;
-			ctx = myGameArea.context;
-			ctx.fillStyle = color;
-			ctx.fillRect(this.x, this.y, this.width, this.height);
+			this.update = function() {
+				ctx = myGameArea.context;
+				ctx.fillStyle = color;
+				ctx.fillRect(this.x, this.y, this.width, this.height);
+			}
 		}
 
 		function updateGameArea() {
 			myGameArea.clear();
+			myGamePiece.x += 1;
 			myGamePiece.update();
 		}
 	</script>

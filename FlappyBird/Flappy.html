@@ -69,14 +69,19 @@
 		function moveRight() {
 			myGamePiece.speedX += 1;
 		}
+
+		function clearMove() {
+			myGamePiece.speedX = 0;
+			myGamePiece.speedY = 0;
+		}
 	</script>
 
 	<p>We have created a game area! (or at least an empty canvas)</p>
 	<div style="text-align: center; width: 480px;">
-		<button onclick="moveUp()">UP</button>
-		<button onclick="moveDown()">DOWN</button>
-		<button onclick="moveLeft()">LEFT</button>
-		<button onclick="moveRight()">RIGHT</button>
+		<button onmousedown="moveUp()" onmouseup="clearMove()" ontouchstart="moveUp()">UP</button>
+		<button onmousedown="moveDown()" onmouseup="clearMove()" ontouchstart="moveDown()"">DOWN</button>
+		<button onmousedown="moveLeft()" onmouseup="clearMove()" ontouchstart="moveLeft()"">LEFT</button>
+		<button onmousedown="moveRight()" onmouseup="clearMove()" ontouchstart="moveRight()"">RIGHT</button>
 	</div>
 	<p>If you click a button the red square will start moving. Click the same button many times, and it will move faster and faster.</p>
 </body>

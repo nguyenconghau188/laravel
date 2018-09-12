@@ -11,11 +11,6 @@
 </head>
 <body onload="startGame()">
 	<script>
-		function startGame(){
-			myGameArea.start();
-			myGamePiece = new component(30, 30, "red", 10, 120);
-		}
-
 		var myGameArea = {
 			canvas : document.createElement("canvas"),
 			start : function() {
@@ -35,6 +30,16 @@
 				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			}
 		}
+
+		var myGamePiece;
+		var myObstacle;
+
+		function startGame(){
+			myGameArea.start();
+			myGamePiece = new component(30, 30, "red", 10, 120);
+			myObstacle = new component(10, 200, "green", 300, 120);
+		}
+
 
 		function component(width, height, color, x, y) {
 			this.width = width;
@@ -56,14 +61,18 @@
 
 		function updateGameArea() {
 			myGameArea.clear();
-			myGamePiece.speedX = 0;
-			myGamePiece.speedY = 0;
+			
 			if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1;}
-			if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1;}
-			if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1;}
-			if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1;}
+			else if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1;}
+			else if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1;}
+			else if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1;}
+			else {
+				myGamePiece.speedX = 0;
+				myGamePiece.speedY = 0;
+			}
 			myGamePiece.newPos();//set new Position allow speed
-			myGamePiece.update();//
+			myGamePiece.update();
+			myObstacle.update();
 		}
 
 		function moveUp() {
@@ -88,13 +97,13 @@
 		}
 	</script>
 
-	<p>We have created a game area! (or at least an empty canvas)</p>
+<!-- 	<p>We have created a game area! (or at least an empty canvas)</p>
 	<div style="text-align: center; width: 480px;">
 		<button onmousedown="moveUp()" onmouseup="clearMove()" ontouchstart="moveUp()">UP</button>
 		<button onmousedown="moveDown()" onmouseup="clearMove()" ontouchstart="moveDown()"">DOWN</button>
 		<button onmousedown="moveLeft()" onmouseup="clearMove()" ontouchstart="moveLeft()"">LEFT</button>
 		<button onmousedown="moveRight()" onmouseup="clearMove()" ontouchstart="moveRight()"">RIGHT</button>
 	</div>
-	<p>If you click a button the red square will start moving. Click the same button many times, and it will move faster and faster.</p>
+	<p>If you click a button the red square will start moving. Click the same button many times, and it will move faster and faster.</p> -->
 </body>
 </html>

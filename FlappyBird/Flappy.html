@@ -28,6 +28,9 @@
 			},
 			clear : function() {
 				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			},
+			stop : function() {
+				clearInterval(this.interval);
 			}
 		}
 
@@ -57,38 +60,58 @@
 				this.x += this.speedX;
 				this.y += this.speedY;
 			}
+			this.crashWith = function(otherobj) {
+				var myLeft = this.x;
+				var myRight = this.x + (this.width);
+				var myTop = this.y;
+				var myBot = this.y +(this.height);
+				var otherLeft = otherobj.x;
+				var otherRight = otherobj.x + otherobj.width;
+				var otherTop = otherobj.y;
+				var otherBot = otherobj.y + otherobj.height;
+				var crash = true;
+				if ((myBot < otherTop) || (myTop > otherBot) || (myLeft > otherRight) || (myRight < otherLeft)) {
+					crash = false;
+				}
+				return crash;
+			}
 		}
 
 		function updateGameArea() {
 			myGameArea.clear();
 			
-			if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1;}
-			else if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1;}
-			else if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1;}
-			else if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1;}
-			else {
-				myGamePiece.speedX = 0;
-				myGamePiece.speedY = 0;
+			if (myGamePiece.crashWith(myObstacle)) {
+				myGameArea.stop();
 			}
-			myGamePiece.newPos();//set new Position allow speed
-			myGamePiece.update();
-			myObstacle.update();
+			else {
+				if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1;}
+				else if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1;}
+				else if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1;}
+				else if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1;}
+				else {
+					myGamePiece.speedX = 0;
+					myGamePiece.speedY = 0;
+				}
+				myGamePiece.newPos();//set new Position allow speed
+				myGamePiece.update();
+				myObstacle.update();
+			}			
 		}
 
 		function moveUp() {
-			myGamePiece.speedY -= 1;
+			myGamePiece.speedY -= 5;
 		}
 
 		function moveDown() {
-			myGamePiece.speedY += 1;
+			myGamePiece.speedY += 5;
 		}
 
 		function moveLeft() {
-			myGamePiece.speedX -= 1;
+			myGamePiece.speedX -= 5;
 		}
 
 		function moveRight() {
-			myGamePiece.speedX += 1;
+			myGamePiece.speedX += 5;
 		}
 
 		function clearMove() {

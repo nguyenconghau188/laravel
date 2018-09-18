@@ -1,6 +1,6 @@
 <?php
-require_once 'class/DB.php';
-require_once 'class/Session.php';
+require_once 'classes/DB.php';
+require_once 'classes/Session.php';
 
 $db = new DB();
 $db->connect();

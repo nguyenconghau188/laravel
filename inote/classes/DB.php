@@ -2,7 +2,7 @@
 
 class DB
 {
-    private $hostname = 'localhost'
+    private $hostname = 'localhost',
             $username = 'root',
             $password = '',
             $dbname = 'inote';

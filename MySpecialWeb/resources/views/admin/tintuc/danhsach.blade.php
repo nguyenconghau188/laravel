@@ -45,8 +45,8 @@
                                             {{"Có"}}
                                         @endif
                                     </td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#">Xóa</a></td>
-                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/xoa/{{$tt->id}}">Xóa</a></td>
+                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/sua/{{$tt->id}}">Sửa</a></td>
                                 </tr>
                             @endforeach                          
                             

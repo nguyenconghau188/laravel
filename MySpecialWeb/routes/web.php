@@ -51,6 +51,7 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::post('sua/{id}', 'TinTucController@postSua');
 		Route::get('them', 'TinTucController@getThem');
 		Route::post('them', 'TinTucController@postThem');
+		Route::get('xoa/{id}', 'TinTucController@getXoa');
 	});
 
 	Route::group(['prefix'=>'user'], function(){

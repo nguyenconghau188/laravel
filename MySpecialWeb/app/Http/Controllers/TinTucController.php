@@ -129,4 +129,12 @@ class TinTucController extends Controller
 
         return redirect('admin/tintuc/sua/'.$id)->with('thongbao', 'Sửa thành công');
     }
+
+    public function getXoa($id)
+    {
+        $tintuc = TinTuc::find($id);
+        $tintuc->delete();
+
+        return redirect('admin/tintuc/danhsach').with('thongbao', 'Xóa thành công!');
+    }
 }

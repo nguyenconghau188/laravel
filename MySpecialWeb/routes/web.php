@@ -40,9 +40,9 @@ Route::group(['prefix'=>'admin'], function(){
 	});
 
 	Route::group(['prefix'=>'comment'], function(){
-		Route::get('danhsach', 'CommentController@getDanhSach');
-		Route::get('sua', 'CommentController@getSua');
-		Route::get('them', 'CommentController@getThem');
+		Route::get('sua/{id}', 'CommentController@getSua');
+		Route::post('sua/{id}', 'CommentController@postSua');
+		Route::get('xoa/{id}/{idTinTuc}', 'CommentController@getXoa');
 	});
 
 	Route::group(['prefix'=>'tintuc'], function(){

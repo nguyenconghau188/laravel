@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\TinTuc;
 use App\LoaiTin;
 use App\TheLoai;
+use App\Comment;
 
 
 

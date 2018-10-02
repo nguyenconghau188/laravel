@@ -54,6 +54,15 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::get('xoa/{id}', 'TinTucController@getXoa');
 	});
 
+	Route::group(['prefix'=>'slide'], function(){
+		Route::get('danhsach', 'SlideController@getDanhSach');
+		Route::get('sua/{id}', 'SlideController@getSua');
+		Route::post('sua/{id}', 'SlideController@postSua');
+		Route::get('them', 'SlideController@getThem');
+		Route::post('them', 'SlideController@postThem');
+		Route::get('xoa/{id}', 'SlideController@getXoa');
+	});
+
 	Route::group(['prefix'=>'user'], function(){
 		Route::get('danhsach', 'UserController@getDanhSach');
 		Route::get('sua', 'UserController@getSua');

@@ -16,30 +16,33 @@
                         <thead>
                             <tr align="center">
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Category Parent</th>
-                                <th>Status</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
+                                <th>Tên</th>
+                                <th>Nội dung</th>
+                                <th>Hình ảnh</th>
+                                <th>Link</th>
+                                <th>Ngày tạo</th>
+                                <th>Ngày sửa</th>
+                                <th>Xóa</th>
+                                <th>Sửa</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd gradeX" align="center">
-                                <td>1</td>
-                                <td>Tin Tức</td>
-                                <td>None</td>
-                                <td>Hiện</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                            </tr>
-                            <tr class="even gradeC" align="center">
-                                <td>2</td>
-                                <td>Bóng Đá</td>
-                                <td>Thể Thao</td>
-                                <td>Ẩn</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                            </tr>
+                            
+                            @foreach($slide as $sl)
+                                <tr class="odd gradeX" align="center">
+                                    <td>{{$sl->id}}</td>
+                                    <td>{{$sl->Ten}}</td>
+                                    <td>{{$sl->NoiDung}}</td>
+                                    <td>
+                                        <img src="upload/slide/{{$sl->Hinh}}" alt="" width="300px">
+                                    </td>
+                                    <td>{{$sl->Link}}</td>
+                                    <td>{{$sl->created_at ? date_format($sl->created_at, 'Y-m-d') : ''}}</td>
+                                    <td>{{$sl->updated_at ? date_format($sl->updated_at, 'Y-m-d') : ''}}</td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/slide/xoa/{{$sl->id}}"> Xóa</a></td>
+                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/slide/sua/{{$sl->id}}">Sửa</a></td>
+                                </tr>
+                            @endforeach                            
                         </tbody>
                     </table>
                 </div>

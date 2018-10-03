@@ -12,7 +12,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                     <div class="col-lg-7" style="padding-bottom:120px">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="admin/tintuc/them" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{csrf_token ()}}">
                             @if(count($errors)>0)
                                 <div class="alert alert-danger">

@@ -40,6 +40,7 @@ class TinTucController extends Controller
                 'TieuDe.required'=>'Bạn chưa nhập tiêu đề',
                 'TieuDe.min'=>'Độ dài tiêu đề từ 1 đến 190 kí tự',
                 'TieuDe.max'=>'Độ dài tiêu đề từ 1 đến 190 kí tự',
+				'TieuDe.unique'=>'Tiêu đề đã tồn tại',
                 'TomTat.required'=>'Bạn chưa nhập tóm tắt',
                 'NoiDung.required'=>'Bạn chưa nhập nội dung',
                 'HinhAnh.required'=>'Bạn chưa chọn hình ảnh'
@@ -108,7 +109,7 @@ class TinTucController extends Controller
         $tintuc->NoiDung = $request->NoiDung;
         $tintuc->NoiBat = $request->NoiBat;
         $tintuc->idLoaiTin = $request->LoaiTin;
-        $tintuc->created_at = new DateTime();
+        $tintuc->updated_at = new DateTime();
         if ($request->hasFile('HinhAnh'))
         {
             $file = $request->HinhAnh;
@@ -136,6 +137,6 @@ class TinTucController extends Controller
         $tintuc = TinTuc::find($id);
         $tintuc->delete();
 
-        return redirect('admin/tintuc/danhsach').with('thongbao', 'Xóa thành công!');
+        return redirect('admin/tintuc/danhsach')->with('thongbao', 'Xóa thành công!');
     }
 }

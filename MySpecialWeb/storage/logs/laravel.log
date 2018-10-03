@@ -3549,3 +3549,6 @@ Stack trace:
 #46 C:\xampp\htdocs\laravel\trunk\MySpecialWeb\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #47 C:\xampp\htdocs\laravel\trunk\MySpecialWeb\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #48 {main}  
+[2018-10-03 16:21:13] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '{'' in C:\xampp\htdocs\laravel\trunk\MySpecialWeb\storage\framework\views\9ee5e2496999999f3b89bd224e0fde15f852683d.php:50
+Stack trace:
+#0 {main}  

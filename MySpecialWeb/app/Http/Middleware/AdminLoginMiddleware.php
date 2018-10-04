@@ -19,13 +19,13 @@ class AdminLoginMiddleware
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->level == 1) {
+            if ($user->level == 1 && $user->status == 1) {
                 $this->DangNhap();
                 return $next($request);
             }
             else {
                 Auth::logout();
-                return redirect('admin/login');
+                return redirect('admin/login')->with('loi', 'Tài khoản này chưa kích hoạt hoặc không có quyền đăng nhập');
             }
         }
         else {

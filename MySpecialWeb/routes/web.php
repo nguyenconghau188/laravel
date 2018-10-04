@@ -19,8 +19,12 @@ Route::get('test_view', function(){
 		return view('admin.theloai.danhsach');
 });
 
+Route::get('admin/login', 'UserController@getLoginAdmin');
+Route::post('admin/login', 'UserController@postLoginAdmin');
+Route::get('admin/logout', 'UserController@getLogoutAdmin');
 
-Route::group(['prefix'=>'admin'], function(){
+
+Route::group([ 'middleware'=>'adminLogin', 'prefix'=>'admin'], function(){
 	Route::group(['prefix'=>'theloai'], function(){
 		Route::get('danhsach', 'TheLoaiController@getDanhSach');
 		Route::get('sua/{id}', 'TheLoaiController@getSua');

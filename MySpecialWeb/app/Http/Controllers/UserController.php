@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use DateTime;
 
@@ -52,7 +53,7 @@ class UserController extends Controller
     	}
     	$user = new User();
     	$user->name = $request->Username;
-    	$user->password = md5($request->Password);
+    	$user->password = bcrypt($request->Password);
     	$user->email = $request->email;
     	$user->level = $request->level;
     	$user->created_at = new DateTime();
@@ -91,7 +92,7 @@ class UserController extends Controller
     	}
     	$user->name = $request->Username;
     	if($request->Password != ''){
-    		$user->password = md5($request->Password);
+    		$user->password = bcrypt($request->Password);
     	}
     	$user->email = $request->email;
     	$user->level = $request->level;
@@ -108,5 +109,45 @@ class UserController extends Controller
     	$user->delete();
 
     	return redirect('admin/user/danhsach')->with('thongbao', 'Xóa thành công tài khoản: '.$name);
+    }
+
+//login
+    public function getLoginAdmin()
+    {
+    	if (Auth::check()) {
+    		return redirect('admin/user/danhsach');
+    	}
+    	return view('admin.login');
+    }
+
+    public function postLoginAdmin(Request $request)
+    {
+    	$this->validate($request, 
+    		[
+    			'username'=>'required',
+    			'password'=>'required'
+    		], 
+    		[
+    			'username.required'=>'Bạn chưa nhập username',
+    			'password.required'=>'Bạn chưa nhập password'
+    		]);
+    	//echo 'username= '.$request->username.' || password= '.$request->password;
+    	$dataAttemp = array(
+    			'name'=>$request->username,
+    			'password'=>$request->password
+    		);
+ //   	var_dump($dataAttemp);
+    	if (Auth::attempt($dataAttemp)) {
+    		return redirect('admin/user/danhsach')->with('', '');
+    	}
+    	else {
+    		return redirect('admin/login')->with('loi','Đăng nhập không thành công');
+    	}
+    	
+    }
+    public function getLogoutAdmin()
+    {
+    	Auth::logout();
+    	return redirect('admin/login');
     }
 }

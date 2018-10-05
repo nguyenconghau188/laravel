@@ -66,6 +66,16 @@
                                      value="1">Admin</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Trạng thái</label>
+                                <label class="checkbox-inline">
+                                    <input 
+                                        @if($user->status == 1)
+                                            {{"checked"}}
+                                        @endif
+                                        name="status" value="1" type="checkbox">Kích hoạt
+                                </label>
+                            </div>
                             <button type="submit" class="btn btn-default">Sửa</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         <form>

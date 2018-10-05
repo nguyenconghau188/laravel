@@ -25,6 +25,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Quyền</th>
+                                <th>Trạng thái</th>
                                 <th>Ngày tạo</th>
                                 <th>Ngày sửa</th>
                                 <th>Xóa</th>
@@ -42,6 +43,13 @@
                                         {{"Admin"}}
                                     @else
                                         {{"Khách"}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($user->status == 1)
+                                        {{"Đã kích hoạt"}}
+                                    @else
+                                        {{"Chưa kích hoạt"}}
                                     @endif
                                 </td>
                                 <td>{{$user->created_at ? date_format($user->created_at, 'd-m-Y') : ''}}</td>

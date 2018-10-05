@@ -56,6 +56,7 @@ class UserController extends Controller
     	$user->password = bcrypt($request->Password);
     	$user->email = $request->email;
     	$user->level = $request->level;
+    	$user->status = $request->status ? $request->status : 0;
     	$user->created_at = new DateTime();
     	$user->save();
 
@@ -96,6 +97,7 @@ class UserController extends Controller
     	}
     	$user->email = $request->email;
     	$user->level = $request->level;
+       	$user->status = $request->status ? $request->status : 0;
     	$user->updated_at = new DateTime();
     	$user->save();
 

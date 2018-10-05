@@ -57,6 +57,12 @@
                                     <option value="1">Admin</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Trạng thái</label>
+                                <label class="checkbox-inline">
+                                    <input name="status" value="1" type="checkbox">Kích hoạt
+                                </label>
+                            </div>
                             <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         <form>

@@ -81,3 +81,7 @@ Route::group([ 'middleware'=>'adminLogin', 'prefix'=>'admin'], function(){
 		Route::get('theloai/{id}', 'AjaxController@getTheLoai');
 	});
 });
+
+Route::get('trangchu', function(){
+	return view('client.pages.trangchu');
+});

@@ -82,6 +82,4 @@ Route::group([ 'middleware'=>'adminLogin', 'prefix'=>'admin'], function(){
 	});
 });
 
-Route::get('trangchu', function(){
-	return view('client.pages.trangchu');
-});
+Route::get('trangchu', 'PageController@trangchu');

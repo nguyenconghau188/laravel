@@ -13,4 +13,10 @@ class PageController extends Controller
     	$theloai = TheLoai::all();
     	return view('client.pages.trangchu', ['theloai'=>$theloai]);
     }
+
+    public function lienhe()
+    {
+    	$theloai = TheLoai::all();
+    	return view('client.pages.lienhe', ['theloai'=>$theloai]);
+    }
 }

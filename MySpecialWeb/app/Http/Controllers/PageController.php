@@ -39,6 +39,8 @@ class PageController extends Controller
     public function tintuc($id)
     {
         $tintuc = TinTuc::find($id);
+        $tintuc->SoLuotXem +=1;
+        $tintuc->save();
         $tinnoibat = TinTuc::where('NoiBat', 1)->take(5)->get();
         $tinlienquan = TinTuc::where('idLoaiTin', $tintuc->idLoaiTin)->take(5)->get();
         return view('client.pages.tintuc', ['tintuc'=>$tintuc, 'tinnoibat'=>$tinnoibat, 'tinlienquan'=>$tinlienquan]);

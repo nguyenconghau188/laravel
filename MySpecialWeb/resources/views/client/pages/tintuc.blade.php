@@ -15,7 +15,7 @@
 
                 <!-- Author -->
                 <p class="lead">
-                    post by <a href="">Admin</a>
+                    <small>post by <a href="">Admin</a></small>
                 </p>
 
                 <!-- Preview Image -->
@@ -85,7 +85,7 @@
 	                            <div class="col-md-7">
 	                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}.html"><b>{{$tlq->TieuDe}}</b></a>
 	                            </div>
-	                            <p>{!!$tlq->TomTat!!}</p>
+	                            <p><small>{!!$tlq->TomTat!!}</small></p>
 	                            <div class="break"></div>
 	                        </div>
                         @endforeach
@@ -111,7 +111,7 @@
 	                            <div class="col-md-7">
 	                                <a href="tintuc/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}.html"><b>{{$tnb->TieuDe}}</b></a>
 	                            </div>
-	                            <p>{!!$tnb->TomTat!!}</p>
+	                            <p><small>{!!$tnb->TomTat!!}</small></p>
 	                            <div class="break"></div>
 	                        </div>
                         @endforeach

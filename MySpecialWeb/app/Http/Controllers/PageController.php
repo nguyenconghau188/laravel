@@ -5,18 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TheLoai;
 use App\LoaiTin;
+use App\TinTuc;
 
 class PageController extends Controller
 {
+	public function __construct()
+	{
+		$theloai = TheLoai::all();
+		view()->share('theloai', $theloai);
+	}
+
     public function trangchu()
     {
-    	$theloai = TheLoai::all();
-    	return view('client.pages.trangchu', ['theloai'=>$theloai]);
+    	return view('client.pages.trangchu');
     }
 
     public function lienhe()
     {
-    	$theloai = TheLoai::all();
-    	return view('client.pages.lienhe', ['theloai'=>$theloai]);
+    	return view('client.pages.lienhe');
+    }
+
+    public function loaitin($id)
+    {
+        $loaitin = LoaiTin::find($id);
+        $tintuc = TinTuc::where('idLoaiTin', $id)->paginate(8);
+    	return view('client.pages.loaitin', ['loaitin'=>$loaitin, 'tintuc'=>$tintuc]);
     }
 }

@@ -22,11 +22,12 @@
                     </li>
                 </ul>
 
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" role="search" action="timkiem" method="POST">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
 			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Search">
+			          <input type="text" class="form-control" placeholder="Tìm kiếm" name="keyword">
 			        </div>
-			        <button type="submit" class="btn btn-default">Submit</button>
+			        <button type="submit" class="btn btn-default">Tìm kiếm</button>
 			    </form>
 
 			    <ul class="nav navbar-nav pull-right">

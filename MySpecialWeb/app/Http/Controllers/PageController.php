@@ -215,4 +215,11 @@ class PageController extends Controller
         $user->save();
         return redirect('dangnhap')->with('thongbao', 'Đăng kí thành thông. Vui lòng đăng nhập!');
     }
+
+    public function timkiem(Request $request)
+    {
+        $keyword = $request->keyword;
+        $tintuc = TinTuc::where('TieuDe','like', "%$keyword%")->orWhere('TomTat', 'like', "%$keyword%")->orWhere('NoiDung', 'like', "%$keyword%")->paginate(8);
+        return view('client.pages.timkiem', ['tintuc'=>$tintuc, 'keyword'=>$keyword]);    
+    }
 }

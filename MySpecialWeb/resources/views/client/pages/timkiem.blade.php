@@ -9,8 +9,9 @@
             <div class="col-md-9 ">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="background-color:#337AB7; color:white;">
-                        <h4><b>{{$loaitin->Ten}}</b></h4>
+                        <h4><b>Kết quả tìm kiếm: {{$keyword}}</b></h4>
                     </div>
+                    @if(count($tintuc->all())>0)
                     @foreach($tintuc as $tt)
                         <div class="row-item row">
                             <div class="col-md-3">
@@ -33,6 +34,9 @@
                     <!-- Pagination -->
                     {{$tintuc->links()}}
                     <!-- /.row -->
+                    @else
+                    <h4> Không tìm được kết quả phù hợp!</h4>
+                    @endif
 
                 </div>
             </div> 

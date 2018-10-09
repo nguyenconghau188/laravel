@@ -9,6 +9,7 @@ use App\TinTuc;
 use App\Slide;
 use App\Comment;
 use Auth;
+use DateTime;
 
 class PageController extends Controller
 {
@@ -88,5 +89,17 @@ class PageController extends Controller
     {
         Auth::logout();
         return redirect('dangnhap');
+    }
+
+    public function postComment(Request $request, $idUser, $idTintuc)
+    {
+        $comment = new Comment();
+        $comment->idUser = $idUser;
+        $comment->idTinTuc = $idTintuc;
+        $comment->NoiDung = $request->comment;
+        $comment->created_at = new DateTime();
+        $comment->save();
+
+        return redirect()->back();
     }
 }

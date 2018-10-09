@@ -36,11 +36,20 @@
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                    <form role="form">
+                    	@if(isset($user_active))
+                    	<form role="form" action="comment/{{$user_active->id}}/{{$tintuc->id}}" method="POST" > 
+                    	@else
+                    	<form role="form" action="" method="POST" > 
+                    	@endif              
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                        	<input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <textarea class="form-control" rows="3" name="comment"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Gửi</button>
+                        @if(isset($user_active))
+                        	<button type="submit" class="btn btn-primary">Gửi</button>
+                        @else
+                        	<button type="button" class="btn btn-primary" id="btnGui">Gửi</button>
+                        @endif
                     </form>
                 </div>
 
@@ -121,9 +130,40 @@
                 <!-- end Tin noi bat -->
                 
             </div>
+            <!--Modal-->
+		<!-- Modal -->
+		  	<div class="modal fade" id="myModal" role="dialog">
+		    	<div class="modal-dialog">
+		    
+		      	<!-- Modal content-->
+		      	<div class="modal-content">
+		      		<div class="modal-header">
+		      			<h4>Cảnh báo</h4>
+		      		</div>
+		        	<div class="modal-body">
+		          		<p>Bạn phải đăng nhập để đăng bình luận.</p>
+		        	</div>
+			        <div class="modal-footer">
+			        	<button type="button" class="btn btn-default" onclick="location.href = 'dangnhap';">Đăng nhập</button>
+			        	<button type="button" class="btn btn-default" onclick="location.href = 'dangky';">Đăng Ký</button>
+			          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+		      	</div>
+		    </div>
 
         </div>
         <!-- /.row -->
-    </div>
+
+
     <!-- end Page Content -->
+@endsection
+
+@section('script')
+	<script>
+		$(document).ready(function(){
+			$('#btnGui').click(function(){
+				$('#myModal').modal();
+			});
+		});
+	</script>	
 @endsection

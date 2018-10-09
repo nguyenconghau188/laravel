@@ -33,6 +33,11 @@ class PageController extends Controller
     	return view('client.pages.lienhe');
     }
 
+    public function gioithieu()
+    {
+        return view('client.pages.gioithieu');
+    }
+
     public function loaitin($id)
     {
         $loaitin = LoaiTin::find($id);
@@ -166,5 +171,48 @@ class PageController extends Controller
             'password'=>$password
         ];
         Auth::attempt($data);
+    }
+
+    public function getRegister()
+    {
+        return view('client.pages.dangky');
+    }
+
+    public function postRegister(Request $request)
+    {
+        $this->validate($request, 
+            [
+                'name'=>'required|min:6|max:32|unique:users,name',
+                'email'=>'required|email|unique:users,email',
+                'password'=>'required|min:6|max:32',
+                'passwordAgain'=>'required|min:6|max:32'
+            ], 
+            [
+                'name.required'=>'Bạn chưa nhập tên tài khoản',
+                'name.unique'=>'Tên tài khoản đã tồn tại',
+                'name.min'=>'Tên tài khoản phải có ít nhất 6 kí tự',
+                'name.max'=>'Tên tài khoản có nhiều nhất 32 kí tự',
+                'email.required'=>'Bạn chưa nhập emai',
+                'emai.email'=>'Sai định dạng email',
+                'email.unique'=>'Email này đã được sử dụng',
+                'password.required'=>'Bạn chưa nhập mật khẩu',
+                'password.min'=>'Mật khẩu phải có ít nhất 6 kí tự',
+                'password.max'=>'Mật khẩu khoản có nhiều nhất 32 kí tự',
+                'passwordAgain.required'=>'Bạn chưa nhập mật khẩu xác nhận',
+                'passwordAgain.min'=>'Mật khẩu xác nhận phải có ít nhất 6 kí tự',
+                'passwordAgain.max'=>'Mật khẩu xác nhận có nhiều nhất 32 kí tự'
+            ]);
+
+        if ($request->password != $request->passwordAgain) {
+            return redirect('dangky')->with('loi', 'Mật khẩu và xác nhận mật khẩu không trùng nhau');
+        }
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->status = 1;
+        $user->level = 0;
+        $user->save();
+        return redirect('dangnhap')->with('thongbao', 'Đăng kí thành thông. Vui lòng đăng nhập!');
     }
 }

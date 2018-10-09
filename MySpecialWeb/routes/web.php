@@ -89,6 +89,10 @@ Route::get('tintuc/{id}/{TieuDeKhongDau}.html', 'PageController@tintuc')->middle
 Route::post('comment/{idUser}/{idTinTuc}', 'PageController@postComment')->middleware('userLogin');
 Route::get('nguoidung', 'PageController@getUserProfile')->middleware('userLogin');
 Route::post('nguoidung', 'PageController@postUserProfile')->middleware('userLogin');
+Route::get('gioithieu', 'PageController@gioithieu');
 Route::get('dangnhap', 'PageController@getUserLogin');
 Route::post('dangnhap', 'PageController@postUserLogin');
 Route::get('dangxuat', 'PageController@getUserLogout');
+Route::get('dangky', 'PageController@getRegister');
+Route::post('dangky', 'PageController@postRegister');
+

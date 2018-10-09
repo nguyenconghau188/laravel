@@ -8,8 +8,10 @@ use App\LoaiTin;
 use App\TinTuc;
 use App\Slide;
 use App\Comment;
+use App\User;
 use Auth;
 use DateTime;
+
 
 class PageController extends Controller
 {
@@ -101,5 +103,68 @@ class PageController extends Controller
         $comment->save();
 
         return redirect()->back();
+    }
+
+    public function getUserProfile()
+    {
+        return view('client.pages.nguoidung');
+    }
+
+    public function postUserProfile(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+
+        $this->validate($request, 
+            [
+                'name'=>'required|min:6|max:32|unique:Users,name,'.$user->id,
+            ], 
+            [
+                'name.required'=>'Bạn chưa nhập tên tài khoản',
+                'name.unique'=>'Tên tài khoản đã tồn tại',
+                'name.min'=>'Tên tài khoản phải có ít nhất 6 kí tự',
+                'name.max'=>'Tên tài khoản có nhiều nhất 32 kí tự'
+            ]);
+
+        if ($request->checkpassword == 1) {
+            $this->validate($request, 
+            [
+                'password'=>'required|min:6|max:32',
+                'passwordAgain'=>'required|min:6|max:32'
+            ], 
+            [
+                'password.required'=>'Bạn chưa nhập mật khẩu',
+                'password.min'=>'Mật khẩu phải có ít nhất 6 kí tự',
+                'password.max'=>'Mật khẩu khoản có nhiều nhất 32 kí tự',
+                'passwordAgain.required'=>'Bạn chưa nhập mật khẩu xác nhận',
+                'passwordAgain.min'=>'Mật khẩu xác nhận phải có ít nhất 6 kí tự',
+                'passwordAgain.max'=>'Mật khẩu xác nhận có nhiều nhất 32 kí tự'
+            ]);
+
+            if ($request->password != $request->passwordAgain) {
+                return redirect('nguoidung')->with('loi', 'Mật khẩu và mật khẩu xác nhận không giống nhau');
+            }
+
+            if ($request->password != $user->password) {
+                $user->password = bcrypt($request->password);
+            }
+
+            $this->reLogin($request->name, $request->password);
+        }
+
+        $user->name = $request->name;
+        $user->save();
+        return redirect('nguoidung')->with('thongbao', 'Sửa thông tin người dùng thành công!');
+    }
+
+    public function reLogin($name, $password)
+    {
+        if (Auth::check()) {
+            Auth::logout();
+        }
+        $data = [
+            'name'=>$name,
+            'password'=>$password
+        ];
+        Auth::attempt($data);
     }
 }

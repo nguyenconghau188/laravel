@@ -87,6 +87,8 @@ Route::get('lienhe', 'PageController@lienhe')->middleware('userLogin');
 Route::get('loaitin/{id}/{TenKhongDau}.html', 'PageController@loaitin')->middleware('userLogin');
 Route::get('tintuc/{id}/{TieuDeKhongDau}.html', 'PageController@tintuc')->middleware('userLogin');
 Route::post('comment/{idUser}/{idTinTuc}', 'PageController@postComment')->middleware('userLogin');
+Route::get('nguoidung', 'PageController@getUserProfile')->middleware('userLogin');
+Route::post('nguoidung', 'PageController@postUserProfile')->middleware('userLogin');
 Route::get('dangnhap', 'PageController@getUserLogin');
 Route::post('dangnhap', 'PageController@postUserLogin');
 Route::get('dangxuat', 'PageController@getUserLogout');

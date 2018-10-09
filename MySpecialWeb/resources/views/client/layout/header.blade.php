@@ -40,7 +40,7 @@
                     @endif
                     @if(isset($user_active))
                         <li>
-                        	<a>
+                        	<a href="nguoidung">
                         		<span class ="glyphicon glyphicon-user"></span>
                         		{{$user_active->name}}
                         	</a>

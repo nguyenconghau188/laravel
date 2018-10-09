@@ -8,6 +8,7 @@ use App\LoaiTin;
 use App\TinTuc;
 use App\Slide;
 use App\Comment;
+use Auth;
 
 class PageController extends Controller
 {
@@ -44,5 +45,48 @@ class PageController extends Controller
         $tinnoibat = TinTuc::where('NoiBat', 1)->take(5)->get();
         $tinlienquan = TinTuc::where('idLoaiTin', $tintuc->idLoaiTin)->take(5)->get();
         return view('client.pages.tintuc', ['tintuc'=>$tintuc, 'tinnoibat'=>$tinnoibat, 'tinlienquan'=>$tinlienquan]);
+    }
+
+    public function getUserLogin()
+    {
+        return view('client.login');
+    }
+
+    public function postUserLogin(Request $request)
+    {
+        $this->validate($request, 
+            [
+                'username'=>'required',
+                'password'=>'required'
+            ], 
+            [
+                'username.required'=>'Bạn chưa nhập tên tài khoản',
+                'password.required'=>'Bạn chưa nhập mật khẩu'
+            ]);
+
+        $data = [
+            'name'=>$request->username,
+            'password'=>$request->password
+            ];
+        if (Auth::check()) {
+            Auth::logout();
+        }
+        if (Auth::attempt($data)) {
+            $user = Auth::user();
+            if ($user->status == 1) {
+                return redirect('trangchu');  
+            }
+            else {
+                Auth::logout();
+                return redirect('dangnhap')->with('loi','Tài khoản chưa được kích hoạt');
+            }            
+        }
+        return redirect('dangnhap')->with('loi','Đăng nhập không thành công');
+    }
+
+    public function getUserLogout()
+    {
+        Auth::logout();
+        return redirect('dangnhap');
     }
 }

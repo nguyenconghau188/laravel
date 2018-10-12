@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Hello AngularJS</title>
+	<link rel="stylesheet" href="">
+	<script language="javascript" src="libs/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="myapp">
+		<div ng-controller="HeaderController">
+			<h2>Xin chào {{data.title}} đến với website {{data.website}}!</h2>
+		</div>
+		<script>
+			angular.module("myapp", []).controller("HeaderController", function($scope){
+				$scope.data = {
+					title: 'các bạn',
+					website: 'myweb.com'
+				};
+			});
+		</script>
+	</div>
+</body>
+</html>
